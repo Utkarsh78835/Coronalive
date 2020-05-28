@@ -1,0 +1,8 @@
+https://corona-virus-stats.herokuapp.com/api/v1/cases/countries-search
+
+https://corona-virus-stats.herokuapp.com/api/v1/cases/general-stats
+
+**https://corona.lmao.ninja/v2/countries?yesterday&sort
+
+
+**https://api.thevirustracker.com/free-api?global=stats = total;

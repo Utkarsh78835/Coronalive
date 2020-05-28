@@ -1,0 +1,27 @@
+  <script>
+    
+    function fetch(){
+      $.get("https://api.covid19india.org/v2/state_district_wise.json" ,
+        function(data){
+          //console.log(data['Countries'].length)
+          for(var i=0; i<(data.length); i++){
+            if(data[i]['country']=="India"){  
+           document.getElementById("case").innerHTML=data.results[0].cases;
+        		document.getElementById("case1").innerHTML=data.results[0].deaths;
+        				document.getElementById("case2").innerHTML=data.results[0].recovered;
+         
+
+
+ 
+
+         }
+       }
+
+          }
+        }
+
+        );
+    }
+ 
+
+  </script>

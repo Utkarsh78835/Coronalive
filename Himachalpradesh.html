@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha256-jDnOKIOq2KNsQZTcBTEnsp76FnfMEttF6AV2DF2fFNE=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha256-JtQPj/3xub8oapVMaIijPNoM0DHoAtgh/gwFYuN5rik=" crossorigin="anonymous"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styl.css">
+</head>
+<body onload="fetch()">
+
+<nav class="navbar navbar-expand-lg bar_2 p-3">
+  <a class="navbar-brand pl-5" href="#">Himachal Pradesh (COVID-19) </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto pr-5">
+      <li class="nav-item active">
+        <a class="nav-link" href="Districts.html">MAP<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </li>
+     
+    
+    </ul>
+  </div>
+</nav>
+<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <div class="mb-3">
+      <h1 class="text-uppercase text-center">Himachal Pradesh</h1>
+    </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+    <section class="corona_update container-fluid">
+    <div class="mb-3">
+      <h3 class="text-uppercase text-center">COVID-19 LIVE UPDATES OF INDIAN DISTRICTS</h3>
+    </div>
+
+    <div class="table-responsive">
+      <table class=" table table-bordered table-striped table-center text-center" id="tbval">
+        <tr>
+          <th>Districts</th>
+          <th>Total Confirmed</th>
+          <th>Active Cases</th>
+          <th>Total Recovered</th>
+          <th>Total Deaths</th>
+          <th>New Confirmed</th>
+          <th>New Recovered</th>
+          <th>New Deaths</th>
+        </tr>
+      </table>
+      
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha256-jDnOKIOq2KNsQZTcBTEnsp76FnfMEttF6AV2DF2fFNE=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha256-JtQPj/3xub8oapVMaIijPNoM0DHoAtgh/gwFYuN5rik=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+    
+    function fetch(){
+      $.get("https://api.covid19india.org/v2/state_district_wise.json" ,
+        function(data){
+          //console.log(data['Countries'].length)
+          var tbval = document.getElementById('tbval');
+          for(var i=0; i<(data.length); i++){
+            if(data[i]['state']=="Himachal Pradesh"){
+           
+            //console.log(data[i]['districtData'].length);
+            for(var j=0;j<data[i]['districtData'].length;j++){
+               var x = tbval.insertRow();
+               x.insertCell(0);
+            tbval.rows[j+1].cells[0].innerHTML = data[i]['districtData'][j]['district'];
+            tbval.rows[j+1].cells[0].style.background = '#ffcccb';
+              tbval.rows[j+1].cells[0].style.color = 'black';
+
+            x.insertCell(1);
+            tbval.rows[j+1].cells[1].innerHTML = data[i]['districtData'][j]['confirmed'];
+            tbval.rows[j+1].cells[1].style.background = 'lightgreen';
+
+            x.insertCell(2);
+            tbval.rows[j+1].cells[2].innerHTML = data[i]['districtData'][j]['active'];
+            tbval.rows[j+1].cells[2].style.background = 'lightgreen';
+
+            x.insertCell(3);
+            tbval.rows[j+1].cells[3].innerHTML = data[i]['districtData'][j]['recovered'];
+            tbval.rows[j+1].cells[3].style.background = 'lightgreen';
+
+            x.insertCell(4);
+            tbval.rows[j+1].cells[4].innerHTML = data[i]['districtData'][j]['deceased'];
+            tbval.rows[j+1].cells[4].style.background = 'red';
+
+            x.insertCell(5);
+            tbval.rows[j+1].cells[5].innerHTML = data[i]['districtData'][j]['delta']['confirmed'];
+            tbval.rows[j+1].cells[5].style.background = 'lightblue';
+
+            x.insertCell(6);
+            tbval.rows[j+1].cells[6].innerHTML = data[i]['districtData'][j]['delta']['recovered'];
+            tbval.rows[j+1].cells[6].style.background = 'lightgreen';
+
+            x.insertCell(7);
+            tbval.rows[j+1].cells[7].innerHTML = data[i]['districtData'][j]['delta']['deceased'];
+            tbval.rows[j+1].cells[7].style.background = 'red';
+
+
+         }
+       }
+
+          }
+        }
+
+        );
+    }
+  </script>
+ </div>
+</body>
+</html>
